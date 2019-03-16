@@ -2,6 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const start = <div>Добро пожаловать!</div>;
+import App from './containers/App';
 
-ReactDOM.render(start, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
