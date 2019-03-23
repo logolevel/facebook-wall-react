@@ -21,7 +21,8 @@
     },
     "dependencies": {
         "react": "16.7.0",
-        "react-dom": "16.7.0"
+        "react-dom": "16.7.0",
+        "reset-css": "^4.0.1"
     },
     "devDependencies": {
         "@babel/core": "7.2.2",

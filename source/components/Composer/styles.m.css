@@ -5,19 +5,16 @@
     height: 130px;
     margin-bottom: 10px;
     padding: 12px;
-    /*border: 1px solid var(--paletteColor4);*/
-    border: 1px solid black;
+    border: 1px solid var(--paletteColor4);
     border-radius: 3px;
-    /*background-color: var(--paletteColor2);*/
-    background-color: #fff;
+    background-color: var(--paletteColor2);
 
     & img {
         width: 40px;
         height: 40px;
         margin-right: 15px;
         transition: border .5s ease;
-        /* border: 1px solid var(--paletteColor2);*/
-        border: 1px solid green;
+        border: 1px solid var(--paletteColor2);
         border-radius: 50%;
         cursor: pointer;
     }
@@ -32,16 +29,13 @@
         border: 0;
         border-radius: 2px;
         outline: 0;
-        background-color: goldenrod;
-        /*background-color: var(--paletteColor6);*/
-        color: black;
-        /*color: var(--paletteColor2);*/
+        background-color: var(--paletteColor6);
+        color: var(--paletteColor2);
         letter-spacing: 1px;
         cursor: pointer;
 
         &:hover {
-            background-color: orange;
-            /* background-color: var(--paletteColor7); */
+            background-color: var(--paletteColor7);
         }
     }
 
@@ -62,13 +56,11 @@
 
         &::placeholder {
             transition: color .4s ease-out;
-            /* color: var(--paletteColor5); */
-            color: white;
+            color: var(--paletteColor5);
         }
 
         &:focus::placeholder {
-            /* color: var(--paletteColor5); */
-            color: white;
+            color: var(--paletteColor5);
         }
         &:focus {
             font-style: 24px;
