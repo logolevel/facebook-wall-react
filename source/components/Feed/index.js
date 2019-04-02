@@ -17,9 +17,10 @@ export default class Feed extends Component {
     constructor() {
         super();
 
-        this._createPost = this._createPost.bind(this); 
-        this._setPostsFetchingState = this._setPostsFetchingState.bind(this); 
-        this._likePost = this._likePost.bind(this); 
+        this._createPost = this._createPost.bind(this);
+        this._setPostsFetchingState = this._setPostsFetchingState.bind(this);
+        this._likePost = this._likePost.bind(this);
+        this._removePost = this._removePost.bind(this);
     }
 
     state = {
@@ -50,6 +51,23 @@ export default class Feed extends Component {
         
         this.setState(({ posts }) => ({
             posts: [post, ...posts],
+            isSpinning: false,
+        }));
+    }
+
+    async _removePost (id) {
+        this._setPostsFetchingState(true);
+
+        await delay(1200);
+
+        const remainedPosts = this.state.posts.filter((post) => {
+            if (post.id !== id) {
+                return { ...post }
+            }
+        });
+
+        this.setState(() => ({
+            posts: remainedPosts,
             isSpinning: false,
         }));
     }
@@ -88,7 +106,12 @@ export default class Feed extends Component {
         const { posts, isSpinning } = this.state;
 
         const postJSX = posts.map((post) => {
-            return <Post key = { post.id } { ...post } _likePost = { this._likePost } />
+            return <Post 
+                key = { post.id }
+                { ...post }
+                _likePost = { this._likePost }
+                _removePost = { this._removePost }
+                />
         });
 
         return (
