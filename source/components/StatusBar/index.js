@@ -44,8 +44,6 @@ class StatusBar extends Component {
 
         const statusMessage = online ? 'Online' : 'Offline';
 
-        console.log('online', online);
-
         return (
             <section className = { Styles.statusBar }>
                 <div className = { statusStyles }>

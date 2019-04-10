@@ -40,7 +40,7 @@ class Feed extends Component {
         });
 
         socket.on('remove', (postJSON) => {
-            const { data: removePost, meta } = JSON.parse(postJSON);
+            const { data: removedPost, meta } = JSON.parse(postJSON);
 
             if (
                 `${currentUserFirstName} ${currentUserLastName}` !==
@@ -48,6 +48,19 @@ class Feed extends Component {
             ) {
                 this.setState(({ posts }) => ({
                     posts: posts.filter((post) => post.id !== removedPost.id),
+                }));
+            }
+        });
+
+        socket.on('like', (postJSON) => {
+            const { data: likedPost, meta } = JSON.parse(postJSON);
+
+            if (
+                `${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({ posts }) => ({
+                    posts: posts.filter((post) => post.id !== likedPost.id),
                 }));
             }
         });
