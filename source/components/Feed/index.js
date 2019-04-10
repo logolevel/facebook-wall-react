@@ -60,7 +60,9 @@ class Feed extends Component {
                 `${meta.authorFirstName} ${meta.authorLastName}`
             ) {
                 this.setState(({ posts }) => ({
-                    posts: [likedPost, ...posts],
+                    posts: posts.map(
+                        (post) => post.id === likedPost.id ? likedPost : post,
+                    ),
                 }));
             }
         });
@@ -69,6 +71,7 @@ class Feed extends Component {
     componentWillUnmount () {
         socket.removeListener('create');
         socket.removeListener('remove');
+        socket.removeListener('like');
     }
 
     _setPostsFetchingState = (state) => {
