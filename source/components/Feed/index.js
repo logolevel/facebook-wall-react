@@ -60,7 +60,7 @@ class Feed extends Component {
                 `${meta.authorFirstName} ${meta.authorLastName}`
             ) {
                 this.setState(({ posts }) => ({
-                    posts: posts.filter((post) => post.id !== likedPost.id),
+                    posts: [likedPost, ...posts],
                 }));
             }
         });
