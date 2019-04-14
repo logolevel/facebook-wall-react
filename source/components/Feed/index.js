@@ -158,6 +158,10 @@ class Feed extends Component {
         TweenLite.fromTo(composer, 1, { opacity: 0 }, { opacity: 1 });
     }
 
+    _animatePostmanExit = (postman) => {
+        TweenLite.fromTo(postman, 1, { opacity: 1, x: 0 }, { opacity: 0, x: 250 });
+    }
+
     _animatePostmanEnter = (postman) => {
         TweenLite.fromTo(
             postman,
@@ -166,7 +170,7 @@ class Feed extends Component {
             { opacity: 1, x: 0,
                 onComplete: () => {
                     setTimeout( () => {
-                        TweenLite.fromTo(postman, 1, { opacity: 1, x: 0 }, { opacity: 0, x: 250 });
+                        this._animatePostmanExit(postman);
                     }, 4000);
                 }
             },
