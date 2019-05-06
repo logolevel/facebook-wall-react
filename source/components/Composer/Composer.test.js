@@ -5,6 +5,8 @@ import { Composer } from './';
 
 const props = {
     _createPost: jest.fn(),
+    avatar: 'test-string',
+    currentUserFirstName: 'test-string'
 };
 
 const comment = 'Anything';
@@ -21,6 +23,8 @@ const result = mount(<Composer {...props} />);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
+const _submitOnEnterSpy = jest.spyOn(result.instance(), '_submitOnEnter');
+const _updateCommentSpy = jest.spyOn(result.instance(), '_updateComment');
 
 describe('Composer component', () => {
     test('Should have 1 "section" element', () => {
@@ -37,6 +41,10 @@ describe('Composer component', () => {
 
     test('Should have 1 "img" element', () => {
         expect(result.find('img')).toHaveLength(1);
+    });
+
+    test('Should have 1 "textarea" element', () => {
+        expect(result.find('textarea')).toHaveLength(1);
     });
 
     test('Should have valid initial state', () => {
@@ -72,6 +80,8 @@ describe('Composer component', () => {
 
         expect(result.find('textarea').text()).toBe(comment);
         expect(result.state()).toEqual(updatedState);
+
+        expect(_updateCommentSpy).toHaveBeenCalledTimes(1);
     });
 
     test('Should handle form "submit" event', () => {
@@ -87,5 +97,13 @@ describe('Composer component', () => {
     test('_submitComment and _handleFormSubmit class methods should be invoked once after form is submitted', () => {
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
         expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('Enter key should be pressed once after form is submitted', () => {
+        result.find('textarea').simulate('keypress', {
+            key: 'Enter',
+        });
+
+        expect(_submitOnEnterSpy).toHaveBeenCalledTimes(1);
     });
 });
