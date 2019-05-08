@@ -24,6 +24,7 @@
         "gsap": "^2.1.2",
         "react": "16.7.0",
         "react-dom": "16.7.0",
+        "react-router-dom": "^4.2.2",
         "react-transition-group": "^2.9.0",
         "reset-css": "^4.0.1",
         "socket.io-client": "^2.2.0"
