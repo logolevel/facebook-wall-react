@@ -1,5 +1,6 @@
 .statusBar {
     display: flex;
+    position: sticky;
     z-index: 1;
     top: 0;
     align-items: center;

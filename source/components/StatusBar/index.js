@@ -41,7 +41,7 @@ class StatusBar extends Component {
     }
 
     render() {
-        const { avatar, currentUserFirstName } = this.props;
+        const { avatar, currentUserFirstName, registered } = this.props;
         const { online } = this.state;
 
         const statusStyles = cx(Styles.status, {
@@ -63,11 +63,15 @@ class StatusBar extends Component {
                         <div>{ statusMessage }</div>
                         <span />
                     </div>
-                    <Link to = '/profile'>
-                        <img src = { avatar } />
-                        <span>{ currentUserFirstName }</span>
-                    </Link>
+                    { registered ? 
+                        <Link to = '/profile'>
+                            <img src = { avatar } />
+                            <span>{ currentUserFirstName }</span>
+                        </Link>:
+                        <Link to = '/login'>Register</Link>
+                    }
                     <Link to = '/feed'>Feed</Link>
+                    { registered ? <a href="#!linkToLogout">Log out</a> : null }
                 </section>
             </Transition>
         );
